@@ -20,6 +20,8 @@ public class NoDiretorio {
     public NoDiretorio(){
         this.prox = null;
         this.listaArquivos = null;
+        
+        this.listaDiretorios =null;
         this.nome = "";
     }
     
@@ -38,11 +40,19 @@ public class NoDiretorio {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    /*
-    Codigo da Lista
-    */
 
+    public void setListaArquivos(NoArquivo ini, NoArquivo fim) {
+        this.listaArquivos.setFimArq(fim);
+        this.listaArquivos.setInicioArq(ini);
+    }
+
+    public void setListaDiretorios(NoDiretorio ini, NoDiretorio fim) {
+        this.listaDiretorios.setFimDir(fim);
+        this.listaDiretorios.setInicioDir(ini);
+    }
+    
+    
+    
     public ListaArquivos getListaArquivos() {
         return listaArquivos;
     }

@@ -14,6 +14,10 @@ public class NoArquivo {
         this.nome = nome;
     }
 
+    public NoArquivo() {
+    }
+
+    
     public NoArquivo getProx() {
         return prox;
     }
