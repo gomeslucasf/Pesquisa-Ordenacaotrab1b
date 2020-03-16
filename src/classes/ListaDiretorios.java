@@ -29,27 +29,59 @@ public class ListaDiretorios {
         this.fimDir = fimDir;
     }
     
-    public void inserirDiretorio(String nomeDiretorio){
-        NoDiretorio novoDir = new NoDiretorio(null, nomeDiretorio);
-                
+    public void inserirDiretorio(String nomeDiretorio, String caminho){
+        NoDiretorio novoDir = new NoDiretorio(nomeDiretorio);
+              
+        NoDiretorio pai = buscarDiretorio(caminho);
+        
         if(this.inicioDir == null){
-             setInicioDir(novoDir);
-             setFimDir(novoDir);
+             pai.getListaDiretorios().setInicioDir(novoDir);
+             pai.getListaDiretorios().setFimDir(novoDir);
         }
         else{
-            getFimDir().setProx(novoDir);
-            setFimDir(novoDir);
+            pai.getListaDiretorios().getFimDir().setProx(novoDir);
+            pai.getListaDiretorios().setFimDir(novoDir);
         }
     }
     
-    
-    //buscarDiretorio("C:\\Unoeste/Mestrado")
+    //buscarDiretorio("C:\\Unoeste/Mestrado");
     public NoDiretorio buscarDiretorio(String caminho){
+        String [] endereco = caminho.split("\\");
+        String [] caminhoString = endereco[1].split("/");
+        NoDiretorio noAux = new NoDiretorio();
+        ListaDiretorios listaAux = new ListaDiretorios();
+        PilhaDiretorio pilha = new PilhaDiretorio();
         
+        //empilhando
+        noAux = getInicioDir();
         
+        for(int vet=0;vet <= caminhoString.length;vet++){
+            while(noAux != null){
+                if(pilha.getHead() != null)
+                    noAux.setProx(pilha.getHead());
+                pilha.setHead(noAux);
+                noAux = noAux.getProx();
+            }
+            
+            
+            while(pilha.getHead() != null){
+                noAux =  pilha.getHead();
+                pilha.setHead(pilha.getHead());
+                if(noAux.getNome() == caminhoString[vet]){
+                    pilha.setHead(null);
+                }
+            }
+            
+            if(noAux.getNome() == caminhoString[vet]){
+               if(noAux.getListaDiretorios()!=null){
+                   listaAux = noAux.getListaDiretorios();
+               }
+            }
         
+            noAux = listaAux.getInicioDir();
+        }
         
-        return null;
+        return noAux;
     }
     
 }

@@ -30,7 +30,7 @@ public class ListaArquivos {
     }
     
     public void inserirArquivo(String nomeArquivo){
-        NoArquivo novoArq = new NoArquivo(null, nomeArquivo);
+        NoArquivo novoArq = new NoArquivo(nomeArquivo);
         
         if(this.inicioArq == null){
             setInicioArq(novoArq);
@@ -41,5 +41,32 @@ public class ListaArquivos {
             setFimArq(novoArq);
         } 
     }
+    
+     public NoArquivo buscarArquivo(String nome){
+        NoArquivo noAux = new NoArquivo();
+        PilhaArquivo pilha = new PilhaArquivo();
+        
+        //empilhando
+        noAux = getInicioArq();
+ 
+        while(noAux != null){
+            if(pilha.getHead() != null)
+                noAux.setProx(pilha.getHead());
+            pilha.setHead(noAux);
+            noAux = noAux.getProx();
+        }
+
+
+        while(pilha.getHead() != null){
+            noAux =  pilha.getHead();
+            pilha.setHead(pilha.getHead());
+            if(noAux.getNome() == nome){
+                pilha.setHead(null);
+            }
+        }
+        
+        return noAux;
+    }
+    
     
 }

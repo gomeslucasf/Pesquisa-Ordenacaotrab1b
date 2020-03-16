@@ -9,8 +9,8 @@ public class NoArquivo {
     private NoArquivo prox;
     private String nome;
 
-    public NoArquivo(NoArquivo prox, String nome) {
-        this.prox = prox;
+    public NoArquivo(String nome) {
+        this.prox = null;
         this.nome = nome;
     }
 

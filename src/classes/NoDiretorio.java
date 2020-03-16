@@ -8,11 +8,13 @@ public class NoDiretorio {
     private NoDiretorio prox;
     private String nome;
     private ListaArquivos listaArquivos;
+    private ListaDiretorios listaDiretorios;
 
-    public NoDiretorio(NoDiretorio prox, String nome) {
-        this.prox = prox;
+    public NoDiretorio( String nome) {
+        this.prox = null;
         this.nome = nome;
         this.listaArquivos = null;
+        this.listaDiretorios =null;
     }
 
     public NoDiretorio(){
@@ -40,6 +42,14 @@ public class NoDiretorio {
     /*
     Codigo da Lista
     */
+
+    public ListaArquivos getListaArquivos() {
+        return listaArquivos;
+    }
+
+    public ListaDiretorios getListaDiretorios() {
+        return listaDiretorios;
+    }
     
     
 }
